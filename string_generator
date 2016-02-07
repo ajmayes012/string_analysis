@@ -1,0 +1,60 @@
+from PythonMarkov import MarkovChain
+from random import randint
+wordlist = open("/root/gametime1.txt", "w")
+count = 0
+def main():
+
+    mc = MarkovChain()
+
+    while count < 100:
+
+        mc.add_file("/root/Desktop/password_analysis/Books/1000men_women.txt")
+
+        if count < 5:
+
+            mc.__init__(1)
+            generate_name = mc.generate_text(2000)
+            def numbered_name(generate_name):
+                index = randint(0, len(generate_name) - 1)
+
+                name = generate_name[index]
+                number = randint(0, 9)
+                numbers = number + randint(0,9)
+                numbered_name = name + str(numbers)
+
+                return numbered_name
+                print numbered_name
+
+                wordlist.write(numbered_name + "\n")
+                count += 1
+
+        elif count >= 5:
+
+            mc.__init__(2)
+
+
+            mc.add_file("/root/Desktop/password_analysis/Books/fullbook1.txt")
+            password = mc.generate_text(2000)
+
+
+            def chain2gather(password):
+
+                index = randint(0, len(password) - 2)
+                word1 = password[index]
+                word2 = password[index + 1]
+                pair = word1 + word2
+                number = randint(0, 9)
+                numbers = number + randint(0,9)
+                numbered_pair = pair + str(numbers)
+
+                wordlist.write(numbered_pair + "\n")
+                return numbered_pair
+                print numbered_pair
+                count += 1
+
+    else:
+
+        wordlist.close()
+if __name__ == "__main__": main()
+
+
